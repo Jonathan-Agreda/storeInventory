@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Sistema de Inventario de Equipos de Telecomunicaciones</h1>
+      <nav>
+        <a href="/" class="active">Inicio</a>
+        <a href="/equipos">Equipos</a>
+        <a href="/equipos/crear">Agregar Equipo</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>Resumen del Inventario</h2>
+
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Total de Equipos</h3>
+          <p><%= totalEquipos %></p>
+        </div>
+
+        <div class="card">
+          <h3>Equipos Activos</h3>
+          <p><%= equiposActivos %></p>
+        </div>
+      </div>
+
+      <section class="recent-equipment">
+        <h3>Últimos Equipos Registrados</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Fabricante</th>
+              <th>Tipo</th>
+              <th>N° Serie</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% ultimosEquipos.forEach(equipo => { %>
+            <tr>
+              <td><%= equipo.modelo %></td>
+              <td><%= equipo.fabricante %></td>
+              <td><%= equipo.tipo %></td>
+              <td><%= equipo.numero_serie %></td>
+              <td><%= equipo.estado %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

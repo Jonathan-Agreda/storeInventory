@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventario de Equipos</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Inventario de Equipos de Telecomunicaciones</h1>
+      <nav>
+        <a href="/">Inicio</a>
+        <a href="/equipos">Equipos</a>
+        <a href="/equipos/crear">Agregar Equipo</a>
+      </nav>
+    </header>
+
+    <main>
+      <h2>Lista de Equipos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Fabricante</th>
+            <th>Tipo</th>
+            <th>N° Serie</th>
+            <th>Ubicación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% equipos.forEach(equipo => { %>
+          <tr>
+            <td><%= equipo.modelo %></td>
+            <td><%= equipo.fabricante %></td>
+            <td><%= equipo.tipo %></td>
+            <td><%= equipo.numero_serie %></td>
+            <td><%= equipo.ubicacion %></td>
+            <td><%= equipo.estado %></td>
+            <td>
+              <form
+                action="/equipos/<%= equipo.id %>/eliminar"
+                method="POST"
+                class="delete-form"
+              >
+                <button
+                  type="submit"
+                  class="btn-delete"
+                  onclick="return confirmDelete()"
+                >
+                  Eliminar
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </main>
+    <script src="/js/confirmDelete.js"></script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar Equipo</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Agregar Nuevo Equipo</h1>
+      <nav>
+        <a href="/">Inicio</a>
+        <a href="/equipos">Volver a la lista</a>
+      </nav>
+    </header>
+
+    <main>
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="error-message"><%= error %></div>
+          <% } %>
+      <form action="/equipos/crear" method="POST">
+        <div>
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo" value="<%= formData.modelo %>" required>
+          </div>
+
+          <div>
+            <label for="fabricante_id">Fabricante:</label>
+            <select id="fabricante_id" name="fabricante_id" required>
+              <option value="">Seleccione un fabricante</option>
+              <% fabricantes.forEach(fabricante => { %>
+                <option value="<%= fabricante.id %>" 
+                  <%= formData.fabricante_id == fabricante.id ? 'selected' : '' %>>
+                  <%= fabricante.nombre %>
+                </option>
+              <% }); %>
+            </select>
+          </div>
+          
+          <div>
+            <label for="tipo_id">Tipo de Equipo:</label>
+            <select id="tipo_id" name="tipo_id" required>
+              <option value="">Seleccione un tipo</option>
+              <% tipos.forEach(tipo => { %>
+                <option value="<%= tipo.id %>" 
+                  <%= formData.tipo_id == tipo.id ? 'selected' : '' %>>
+                  <%= tipo.nombre %>
+                </option>
+              <% }); %>
+            </select>
+          </div>
+
+        <div>
+            <label for="numero_serie">Número de Serie:</label>
+            <input type="text" id="numero_serie" name="numero_serie" value="<%= formData.numero_serie %>" required>
+          </div>
+        <!-- Más campos según necesites -->
+
+        <button type="submit">Guardar</button>
+      </form>
+    </main>
+  </body>
+</html>
